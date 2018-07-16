@@ -55,7 +55,7 @@ public class AView extends View{
         /**
             关于锯齿现象的解释：锯齿的发生其实是由于图形分辨率过低，人眼看到像素颗粒，
             开不开启抗锯齿，图形边缘也是正常状态了，只是开抗锯齿会修改图形边缘处的像素颜色
-            修改颜色从而造成平滑的感觉（改变边缘颜色，同时也就意味着图形颜色失真）
+            边缘色值修改颜色，从而造成平滑的感觉（改变边缘颜色，同时也就意味着图形颜色失真）
          */
         // paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setAntiAlias(true);
@@ -117,19 +117,19 @@ public class AView extends View{
          */
         path.addCircle(100,100,50, Path.Direction.CW);
         //除了addPath之外，其他都是完整封闭图形，而xxxTo只是添加一条线
-        path.lineTo(100, 100); // 由当前位置 (0, 0) 向 (100, 100) 画一条直线
+        path.lineTo(100, 100); // 由当前位置 (0, 0) 向 (100, 100) 画一条直线，r系列都是基于当前位置
         path.rLineTo(100, 0); // 由当前位置 (100, 100) 向正右方 100 像素的位置画一条直线
         //贝塞尔曲线(前两个参数是控制点，后面两个是终点位置)
         path.quadTo(50,50,100,100);
         path.rQuadTo(50,50,100,100);
         //path.cubicTo();//三次贝塞尔
         //移动到目标位置,直接移动
-        path.moveTo(200,100);
+        path.moveTo(200,100);//对应offset，平移会受影响
         //不使用当前位置作为弧线起点的画线（就是用来画弧线的,参数forceMoveTo 意思是
         //  要抬一下笔移动过去(无痕迹移动)，还是拖着笔过去（带着线过去））
         //path.arcTo();  addArc();  这都是非起点，直接换个地方开始
         //!!!!!!!!!!!   arcTo和addArc 区别是很关键的
-        //直接画弧线，默认是抬着画笔过去的，是简化版的arcTo（）
+        //直接画弧线，默认是抬着画笔过去的，是简化版的arcTo（），addTo的最后一个true false参数  如果是true则与addArc一样，如果false会连上抬起起点位置
         path.addArc(new RectF(),-90,90);
         //封闭图形
         path.close();

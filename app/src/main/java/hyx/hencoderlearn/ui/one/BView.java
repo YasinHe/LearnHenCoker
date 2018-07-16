@@ -106,6 +106,7 @@ public class BView extends View{
          *  线条宽度还有划线模式不同，实际绘制路径也就不同，并不是你设置的想象中的
          *  getTextPath获取文字的绘制路径，文字其实是转化为图形进行绘制的，所以文字也是有path的，
          *  获得到他之后，我们可以给文字设置下划线
+         *  path ：rewind（）重置path,但会保留内部数据结构   reset（）重置path,但不会重置fill-type设置
          *
          *
          *  paint本身带的一些，初始化方法：
