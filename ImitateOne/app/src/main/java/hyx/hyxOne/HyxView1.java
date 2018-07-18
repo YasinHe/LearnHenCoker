@@ -315,7 +315,7 @@ public class HyxView1 extends View{
         int x = centerX - bitmapWidth / 2;
         int y = centerY - bitmapHeight / 2;
 
-        //能动的半边
+        //---能动的半边
         //先旋转位置，然后裁切下来   再用camera把裁切部分的旋转
         canvas.save();
         camera.save();
@@ -331,7 +331,9 @@ public class HyxView1 extends View{
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
 
-        //不能动的半边
+
+
+        //---不能动的半边
         canvas.save();//1
         camera.save();//1
         canvas.translate(centerX, centerY);//1
